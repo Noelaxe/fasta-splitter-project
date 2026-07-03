@@ -41,7 +41,7 @@ const App = () => {
           onClick={async () => {
               const chunks = splitSequences(sequences, chunkSize);
 
-              await downloadZip(chunks, fileName)
+              await downloadZip(chunks, fileName.substring(0, fileName.length - 6))
             }
           }
           className="
