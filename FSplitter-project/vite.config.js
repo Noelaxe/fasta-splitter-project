@@ -10,5 +10,5 @@ export default defineConfig({
     tailwindcss(),
     babel({ presets: [reactCompilerPreset()] })
   ],
-  base: '/fasta-splitter-project/FSplitter-project'
+  base: '/fasta-splitter-project'
 })
