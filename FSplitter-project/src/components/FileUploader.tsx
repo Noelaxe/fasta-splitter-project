@@ -1,5 +1,6 @@
 import {ChangeEvent, useState} from "react";
 import { parseFasta } from "../utils/parseFasta";
+import { useRef } from "react";
 
 type UploadStatus = 'idle' | 'uploading' | 'success' | 'error';
 
@@ -14,17 +15,27 @@ export default function FileUploader({
     const [file, setFile] = useState<File | null>(null);
     const [status, setStatus] = useState<UploadStatus>('idle');
     const [sequenceCount, setSequenceCount] = useState(0);
+    const fileInputRef = useRef(null);
+
+    function handleButtonClick() {
+        fileInputRef.current.click();
+    }
 
     function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
         if (e.target.files) {
+            console.log("handleFileChange started")
             setFile(e.target.files[0]);
+            console.log(file)
+            handleFileUpload(e.target.files[0])
         }
     }
 
-    async function handleFileUpload() {
+    async function handleFileUpload(file: File) {
+        console.log("handleFileUpload function started")
         if(!file) return;
 
         try{
+            console.log("handleFileUpload try block started")
             setStatus("uploading");
 
             const text = await file.text();
@@ -55,45 +66,34 @@ export default function FileUploader({
 
     return (
     <div className="space-y-2">
-        <input 
-            type="file"
-            onChange={handleFileChange}
-            className="
-                block w-full text-sm text-gray-500
-                file:mr-4
-                file:rounded-md
-                file:border-0
-                file:bg-blue-600
-                file:px-4
-                file:py-2
-                file:text-white
-                file:font-medium
-                hover:file:bg-blue-700
-                file:cursor-pointer
-                cursor-pointer
-            "/>
+        
 
-            {file && (
-             <div className="mb-4 text-sm">
-                <p>File name: {file.name}</p>
-                <p>Size: {(file.size / 1024).toFixed(2)} KB</p>
-                {/* <p>Type: {file.type} </p> */}
-                <p>Sequences: {sequenceCount} </p>
-             </div>   
-            )}
+            <button 
+                onClick={handleButtonClick}
+                className="
+                    bg-green-600
+                    rounded-md
+                    text-white
+                    m-1 p-2
+                    pl-3.5 pr-3.5
+                    text-sm
+                    font-medium
+                    cursor-pointer
+                    hover:bg-green-700"
+            >
+                    Choose File
+            </button>
 
-            {file && status !== "uploading" && <button 
-            onClick={handleFileUpload}
-            className="
-                block text-sm text-black
-                bg-green-400
-                rounded-md
-                p-2
-                pl-4 pr-4
-                cursor-pointer
-            "
-            >Upload File</button>}
+            <input
+                ref={fileInputRef}
+                type="file"
+                onChange={handleFileChange}
+                style={{ display: "none" }}
+            />
 
+            {file && <p>{file.name}</p>}
+
+            
             {status === 'success' && (
                 <p className="text-sm text-green-600">File uploaded successfully!</p>
             )}
