@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { splitSequences } from "../utils/splitSequences";
 import { downloadZip } from "../utils/downloadZip";
 import uploadIcon from "../assets/upload-file-svgrepo-com.svg"
+import infoIcon from "../assets/info-circle-svgrepo-com.svg"
 
 function Core() {
     const [sequences, setSequences] = useState([]);
@@ -14,9 +15,9 @@ function Core() {
       }, [chunkSize]);
 
     return(
-        <div>
-            <h1 className="mt-3 font-semibold font-sans text-[20px]">1. Upload your FASTA file</h1>
-            <div className="m-3 ml-3 p-3 border-2 border-dashed border-green-700 rounded-md bg-green-50 flex-col flex items-center justify-center text-center">
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+            <h1 className="mb-4 mt-3 font-semibold font-sans text-[20px]">1. Upload your FASTA file</h1>
+            <div className="mb-4 m-3 ml-3 p-3 border-2 border-dashed border-green-700 rounded-md bg-green-50 flex-col flex items-center justify-center text-center">
                 
                 <img src={uploadIcon} className="w-15 h-15 m-5" />
                 
@@ -43,14 +44,14 @@ function Core() {
                         setChunkSize(e.target.value === "" ? null : Number(e.target.value));
                     }}
                     placeholder="Enter number of sequences in each file (e.g. 1000)"
-                    className="mb-3 mt-3 w-full shrink-0 ml-3 mr-6 border border-gray-200 shadow-sm py-3 pl-12 pr-4 rounded-xl focus:border-green-500 focus:outline-none focus:ring-4 focus:ring-green-100 placeholder:text-gray-400"
+                    className="mb-4 mt-3 w-full shrink-0 ml-3 mr-6 border border-gray-200 shadow-sm py-3 pl-12 pr-4 rounded-xl focus:border-green-500 focus:outline-none focus:ring-4 focus:ring-green-100 placeholder:text-gray-400"
                     />
                 </div>
             </div>
             <div>
                 <h1 className="mt-5 font-semibold font-sans text-[20px]">3. Split and Download</h1>
                 <p className="font-sans text-gray-900">Click the button below to split your file. All parts will be bundled and downloaded as a .zip file.</p>
-                <div className="pr-3">
+                <div className="pr-3 mb-7">
                     <button 
                         disabled={chunkSize<=0 || sequences.length===0}
                         onClick={async () => {
@@ -65,7 +66,7 @@ function Core() {
                             rounded-md
                             text-white
                             m-1 p-2
-                            pl-3.5 pr-3.5
+                            ml-3
                             text-m
                             font-semibold
                             cursor-pointer
@@ -76,9 +77,15 @@ function Core() {
                     </button>
                 </div>
             </div>
-            <div className="border-none bg-green-50 rounded-md m-1 p-2 mt-4">
-                <p className="font-medium text-green-700">Your files are processed directly in your browser without offloading to any server.</p>
-                <p className="font-medium text-green-700">Speed of processing depends on your computer hardware.</p>
+            <div className="flex gap-3 border-none bg-green-50 rounded-md m-1 p-2 mt-4 ml-3">
+                <div>
+                    <img src={infoIcon} className="w-10 h-10 mt-1"/>
+                </div>
+                
+                <div>
+                    <p className="font-medium text-green-700">Your files are processed directly in your browser without offloading to any server.</p>
+                    <p className="font-medium text-green-700">Speed of processing depends on your computer hardware.</p>
+                </div>
             </div>
 
         </div>
