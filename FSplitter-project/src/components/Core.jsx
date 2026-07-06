@@ -2,6 +2,7 @@ import FileUploader from "./FileUploader"
 import { useState, useEffect } from "react";
 import { splitSequences } from "../utils/splitSequences";
 import { downloadZip } from "../utils/downloadZip";
+import uploadIcon from "../assets/upload-file-svgrepo-com.svg"
 
 function Core() {
     const [sequences, setSequences] = useState([]);
@@ -17,7 +18,7 @@ function Core() {
             <h1 className="mt-3 font-semibold font-sans text-[20px]">1. Upload your FASTA file</h1>
             <div className="m-3 ml-3 p-3 border-2 border-dashed border-green-700 rounded-md bg-green-50 flex-col flex items-center justify-center text-center">
                 
-                <img src="public/upload-file-svgrepo-com.svg" className="w-15 h-15 m-5" />
+                <img src={uploadIcon} className="w-15 h-15 m-5" />
                 
                 
                 <p className="text-gray-800 font-semibold text-lg mb-2">Choose your FASTA file</p>
