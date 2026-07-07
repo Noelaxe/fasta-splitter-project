@@ -55,7 +55,7 @@ function Core() {
                     <button 
                         disabled={chunkSize<=0 || sequences.length===0}
                         onClick={async () => {
-                            alert('Processing will start after you click OK. Large files may take time.')
+                            alert('Processing will start after you click OK. Large files may take time. Please wait until the download appears.')
                             const chunks = splitSequences(sequences, chunkSize);
 
                             await downloadZip(chunks, fileName.substring(0, fileName.length - 6))
