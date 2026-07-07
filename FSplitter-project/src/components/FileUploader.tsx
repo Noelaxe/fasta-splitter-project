@@ -16,16 +16,30 @@ export default function FileUploader({
     const [status, setStatus] = useState<UploadStatus>('idle');
     const [sequenceCount, setSequenceCount] = useState(0);
     const fileInputRef = useRef(null);
+    const validExtensions = [".fasta",".fa",".faa",".fna",".ffn",".frn",".fas"];
+
 
     function handleButtonClick() {
         fileInputRef.current.click();
     }
 
     function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
+        
         if (e.target.files) {
             console.log("handleFileChange started")
+
+            const isValidExtension = validExtensions.some(ext =>
+              e.target.files[0].name.toLowerCase().endsWith(ext)
+            );
+
+            if (!isValidExtension) {
+                 alert("Please upload a FASTA file.");
+                return;
+            }   
+
             setFile(e.target.files[0]);
             console.log(file)
+
             handleFileUpload(e.target.files[0])
         }
     }
@@ -87,6 +101,7 @@ export default function FileUploader({
             <input
                 ref={fileInputRef}
                 type="file"
+                accept=".fasta,.fa,.faa,.fna,.ffn,.frn,.fas"
                 onChange={handleFileChange}
                 style={{ display: "none" }}
             />
