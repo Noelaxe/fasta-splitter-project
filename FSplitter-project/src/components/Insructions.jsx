@@ -19,7 +19,7 @@ const steps = [
         number: 3,
         title: "Click Split FASTA File",
         description:
-            'Click the "Split FASTA File" button to process your file. A ZIP file containing all FASTA parts will be downloaded to your device.',
+            'Click the "Split FASTA File" button and click "OK" in the alert pop-up to process your file. A ZIP file containing all FASTA parts will be downloaded to your device.',
     },
     {
         number: 4,
