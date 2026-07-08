@@ -16,7 +16,7 @@ function Core() {
 
     return(
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
-            <h1 className="mb-4 mt-3 font-semibold font-sans text-[20px]">1. Upload your FASTA file</h1>
+            <h2 className="mb-4 mt-3 font-semibold font-sans text-[20px]">1. Upload your FASTA file</h2>
             <div className="mb-4 m-3 ml-3 p-3 border-2 border-dashed border-green-700 rounded-md bg-green-50 flex-col flex items-center justify-center text-center">
                 
                 <img src={uploadIcon} className="w-15 h-15 m-5" />
@@ -32,7 +32,7 @@ function Core() {
             
             </div>
             <div className="pr-3">
-                <h1 className="mt-7 font-semibold font-sans text-[20px]">2. Set number of sequences per file</h1>
+                <h2 className="mt-7 font-semibold font-sans text-[20px]">2. Set number of sequences per file</h2>
                 <p className="font-sans text-gray-900">Enter number of sequences in each file:</p>
                 <div className="pr-3">
                     <input
@@ -49,7 +49,7 @@ function Core() {
                 </div>
             </div>
             <div>
-                <h1 className="mt-5 font-semibold font-sans text-[20px]">3. Split and Download</h1>
+                <h2 className="mt-5 font-semibold font-sans text-[20px]">3. Split and Download</h2>
                 <p className="font-sans text-gray-900">Click the button below to split your file. All parts will be bundled and downloaded as a .zip file.</p>
                 <div className="pr-3 mb-7">
                     <button 
